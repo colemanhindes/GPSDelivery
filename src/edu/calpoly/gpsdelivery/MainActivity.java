@@ -12,9 +12,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,6 +37,8 @@ LocationListener {
     private GoogleMap mMap;
     private Button mButton;
     private LocationClient mLocationClient;
+    private LatLng mCurrentCoordinates;
+    private boolean mSent = false;
     
     private static final LocationRequest REQUEST = LocationRequest.create()
             .setInterval(5000)         // 5 seconds
@@ -46,6 +51,13 @@ LocationListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpMapIfNeeded();
+//        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+//                "mailto","colemanhindes@gmail.com", null));
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+//        startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        
+       
         
 //        mButton = (Button) findViewById(R.id.button);
 //        if (mButton != null)
@@ -111,7 +123,10 @@ LocationListener {
                                      lastLocation.getLatitude(),
                                      lastLocation.getLongitude());
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentCoordinates, 10));
+                
+                
              }
+           
             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         }
     }
@@ -137,18 +152,41 @@ LocationListener {
             // Check if we were successful in obtaining the map.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+          
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 mMap.setMyLocationEnabled(true);
                 showMyLocation(this.findViewById(R.id.map));
+                
+
+                
             }
         }
+    }
+    
+    private void setCoords()
+    {
+    	 Location lastLocation = mLocationClient.getLastLocation();
+		 mCurrentCoordinates = new LatLng(
+                 lastLocation.getLatitude(),
+                 lastLocation.getLongitude());
     }
 
 	@Override
 	public void onLocationChanged(Location location) {
 		//Toast.makeText(getApplicationContext(), "Location = " + location, Toast.LENGTH_SHORT).show();
 		//Do nothing
+		 setCoords();
+		 if (mSent == false)
+		 {
+			 SmsManager smsManager = SmsManager.getDefault();
+			 String phoneNo = "3235335596";
+			 String msg = "Location = " + mCurrentCoordinates + "\n1 pizza\n 19.99";
+			 smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+			 mSent = true;
+		 }
+		 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mCurrentCoordinates, 18));
+
 	}
 
 	@Override
