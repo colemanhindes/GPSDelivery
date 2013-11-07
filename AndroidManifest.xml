@@ -49,16 +49,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ItemDetailsActivity"
+            android:label="@string/title_details" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.CheckoutActivity"
+            android:label="@string/title_checkout" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.LoginActivity"
+            android:label="@string/title_login" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ConfirmationActivity"
+            android:label="@string/title_confirmation" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.PaymentActivity"
+            android:label="@string/title_payment" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.OrderCompleteActivity"
+            android:label="@string/title_order_complete" />
 
         <receiver
             android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"
             android:exported="false" >
         </receiver>
-
-        <activity
-            android:name="edu.calpoly.gpsdelivery.CheckoutActivity"
-            android:label="@string/title_activity_checkout" >
-        </activity>
     </application>
 
 </manifest>

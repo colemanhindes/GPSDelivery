@@ -3,6 +3,7 @@ package edu.calpoly.gpsdelivery;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.wallet.WalletClient;
 import com.google.android.gms.wallet.WalletConstants;
+import com.google.android.gms.samples.wallet.*;
 
 import edu.calpoly.gpsdatabase01.Launch;
 import android.os.Bundle;
@@ -33,8 +34,8 @@ public class PayActivity extends Activity
 	}
 	public void startPay(View view)
 	{
-		Intent intent = new Intent(this, CheckoutActivity.class);
-		startActivityForResult(intent, 0);
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivityForResult(intent, LoginActivity.REQUEST_USER_LOGIN);
 	}
 	
 }
