@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".PayActivity" >
+
+    <ImageButton 
+             android:id = "@+id/paybutton"
+             android:layout_width="match_parent"
+             android:layout_height="48dp"
+             android:minWidth="200dp"
+             android:background="@drawable/wallet_button_background"
+             android:contentDescription="@string/wallet_buy_with_google_wallet"
+             android:src="@drawable/wallet_button_buy_with_foreground" 
+             android:onClick="startPay"/>
+    <Button 
+        	 android:id="@+id/mapbutton"
+         	 android:layout_width="match_parent"
+             android:layout_height="48dp"
+             android:minWidth="200dp"
+             android:text="@string/map" 
+             android:layout_below="@id/paybutton"
+             android:onClick="startMap"/>
+    <Button 
+         	 android:layout_width="match_parent"
+             android:layout_height="48dp"
+             android:minWidth="200dp"
+             android:text="@string/db" 
+             android:layout_below="@id/mapbutton"
+             android:onClick="startDb"/>
+
+</RelativeLayout>

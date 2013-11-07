@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.calpoly.gpsdelivery"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+         The following two permissions are not required to use
+	     Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAVSA7cAN6rii_I4rij_V4WbTZlf8Vo6Zc" />
+
+        <activity
+            android:name="edu.calpoly.gpsdelivery.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.calpoly.gpsdatabase01.Launch"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="edu.calpoly.gpsdelivery.PayActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ItemDetailsActivity"
+            android:label="@string/title_details" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.CheckoutActivity"
+            android:label="@string/title_checkout" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.LoginActivity"
+            android:label="@string/title_login" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ConfirmationActivity"
+            android:label="@string/title_confirmation" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.PaymentActivity"
+            android:label="@string/title_payment" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.OrderCompleteActivity"
+            android:label="@string/title_order_complete" />
+
+        <receiver
+            android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"
+            android:exported="false" >
+        </receiver>
+    </application>
+
+</manifest>
