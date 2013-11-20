@@ -71,6 +71,9 @@
         <activity
             android:name="com.google.android.gms.samples.wallet.OrderCompleteActivity"
             android:label="@string/title_order_complete" />
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ItemListActivity"
+            android:label="@string/title_order_complete" />
 
         <receiver
             android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"

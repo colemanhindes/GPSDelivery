@@ -27,7 +27,7 @@ public class PayActivity extends android.support.v4.app.FragmentActivity
 	}
 	public void startPay(View view)
 	{
-		Intent intent = new Intent(this, CheckoutActivity.class);
+		Intent intent = new Intent(this, ItemListActivity.class);
 		startActivity(intent);
 	}
 //	protected void onActivityResult (int requestCode, int resultCode, Intent data)
