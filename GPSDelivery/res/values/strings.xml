@@ -10,5 +10,6 @@
     <string name="title_activity_checkout">CheckoutActivity</string>
     <string name="confirm">Confirm Location</string>
     <string name="hello_world">Hello world</string>
+    <string name="estimation">Estimated time: 10 to 15 minutes</string>
 
 </resources>

@@ -1,5 +1,10 @@
 package edu.calpoly.gpsdelivery;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
@@ -15,6 +20,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,7 +38,7 @@ import android.widget.Toast;
  * Notice how we deal with the possibility that the Google Play services APK is
  * not installed/enabled/updated on a user's device.
  */
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends android.support.v4.app.FragmentActivity implements
 		ConnectionCallbacks, OnConnectionFailedListener, LocationListener,
 		OnMarkerDragListener {
 	/**
@@ -195,8 +202,9 @@ public class MainActivity extends FragmentActivity implements
 			//smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 			mSent = true;
 			mMarker = mMap.addMarker(new MarkerOptions()
-					.position(mCurrentCoordinates).title("Hello world")
+					.position(mCurrentCoordinates).title("Delivery spot")
 					.draggable(true));
+			
 			mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
 					mCurrentCoordinates, 18));
 		}
@@ -207,7 +215,20 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onMarkerDragEnd(Marker marker) {
 		mMarkerPos = marker.getPosition();
-		Toast.makeText(this, mMarkerPos.toString(), Toast.LENGTH_SHORT).show();
+		List<Address> addresses = new ArrayList<Address>();
+		Geocoder geocoder = new Geocoder(this, Locale.US);
+		try {
+			addresses = geocoder.getFromLocation(mMarkerPos.latitude, mMarkerPos.longitude, 1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (addresses != null && !addresses.isEmpty())
+		{
+			Address address = addresses.get(0);
+			if (address != null && address.getMaxAddressLineIndex() != -1)
+				Toast.makeText(this, address.getAddressLine(0), Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override

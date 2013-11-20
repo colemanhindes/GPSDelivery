@@ -3,7 +3,6 @@ package edu.calpoly.gpsdelivery;
 import com.google.android.gms.samples.wallet.*;
 import edu.calpoly.gpsdatabase01.Launch;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 
