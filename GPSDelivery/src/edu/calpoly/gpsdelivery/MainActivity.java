@@ -98,6 +98,12 @@ public class MainActivity extends FragmentActivity implements
 	public void onConnectionFailed(ConnectionResult result) {
 		// Do nothing
 	}
+	
+	public void nextScreen(View view)
+	{
+		Intent intent = new Intent(this, PayActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	protected void onResume() {
@@ -166,6 +172,7 @@ public class MainActivity extends FragmentActivity implements
 			}
 		}
 	}
+
 
 	private void setCoords() {
 		Location lastLocation = mLocationClient.getLastLocation();

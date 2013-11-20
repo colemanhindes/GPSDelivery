@@ -55,7 +55,7 @@
     <string name="thanks_for_your_order">Thanks for your order</string>
     <string name="confirmation_details">Confirmation details</string>
     <string name="secured_by">Secured by</string>
-    <string name="confirmation_text">Your order confirmation number is ABC123.\n\nYour purchase will be shipped within two business days.</string>
+    <string name="confirmation_text">Your order confirmation number is ABC123.\n\nYour purchase will be delivered in 10 to 15 minutes.</string>
     <string name="credit_card_title">Credit Card</string>
     <string name="card_number">Card Number</string>
     <string name="name">Name</string>

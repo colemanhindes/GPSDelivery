@@ -19,6 +19,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.wallet.API_KEY"
+            android:value="AIzaSyAVSA7cAN6rii_I4rij_V4WbTZlf8Vo6Zc" />
         <activity
             android:name="ItemListActivity"
             android:label="@string/store_name" >

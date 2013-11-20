@@ -18,7 +18,7 @@ public class Launch extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_launch);
+		setContentView(R.layout.glenactivity_launch);
 
 		datasource = new ItemsDataSource(this);
 		datasource.open();
@@ -55,11 +55,11 @@ public class Launch extends ListActivity {
 			break;
 			
 		case R.id.showReceiptButton:
-			setContentView(R.layout.activity_receipt);
+			setContentView(R.layout.glenactivity_receipt);
 			break;
 			
 		case R.id.backToDB:
-			setContentView(R.layout.activity_launch);
+			setContentView(R.layout.glenactivity_launch);
 			break;
 		}
 		adapter.notifyDataSetChanged();
