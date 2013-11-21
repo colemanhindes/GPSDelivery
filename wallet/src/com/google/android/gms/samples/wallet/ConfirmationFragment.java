@@ -17,6 +17,7 @@
 package com.google.android.gms.samples.wallet;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.wallet.FullWallet;
 import com.google.android.gms.wallet.FullWalletRequest;
 import com.google.android.gms.wallet.MaskedWallet;
@@ -110,8 +111,19 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         mTax = (TextView) view.findViewById(R.id.text_tax_price);
         mTotal = (TextView) view.findViewById(R.id.text_total_price);
         mPaymentDescriptions = (TextView) view.findViewById(R.id.text_payment_descriptions);
+        
+        // SHIPPING LOCATION
+        //mShippingAddress = (TextView) view.findViewById(R.id.text_shipping_address);
         mShippingAddress = (TextView) view.findViewById(R.id.text_shipping_address);
-
+        mShippingAddress.setText("Location to deliver to: 35.2454989 N , 120.5969758 W");
+        
+        /*String toDeliver = ItemListActivity.deliveryLoc;
+        mShippingAddress.setText("");
+        if(!toDeliver.equals("No Location Data")) {
+        	String[] locs = toDeliver.split(",");
+        	mShippingAddress.setText("Latitude: " + locs[0] +"\nLongitude: " + locs[1]);
+        }*/
+        
         updateUiForNewMaskedWallet();
 
         mChangePaymentButton = (Button) view.findViewById(R.id.button_change_google_wallet);
@@ -185,6 +197,10 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
 
         mShippingAddress.setText(Util.formatAddress(getActivity(),
                 mMaskedWallet.getShippingAddress()));
+        /*if(ItemListActivity.deliveryLoc != null) {
+        String[] toDeliver = ItemListActivity.deliveryLoc.split(",");
+        mShippingAddress.setText("Latitude: " + toDeliver[0] +"\nLongitude: " + toDeliver[1]);
+        }*/
     }
 
     @Override

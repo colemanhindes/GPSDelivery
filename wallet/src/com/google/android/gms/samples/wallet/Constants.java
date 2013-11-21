@@ -44,11 +44,11 @@ public class Constants {
      * the merchant's servers.
      */
     public static final ItemInfo[] ITEMS_FOR_SALE = {
-            new ItemInfo("Camera XY000", "Features", 800000000, 0, CURRENCY_CODE_USD,
-                    "seller data 0", R.drawable.xy000),
-            new ItemInfo("Camera XY001", "More features", 950000000, 9990000, CURRENCY_CODE_USD,
-                    "seller data 1", R.drawable.xy001),
-            new ItemInfo("Camera XY002", "Even more features", 1500000000, 9990000,
-                    CURRENCY_CODE_USD, "seller data 2", R.drawable.xy002)
+            new ItemInfo("Large Pepperoni Fatte's Pizza", "Large Pepperoni Pizza from Fatte's", 20000000, 3000000, CURRENCY_CODE_USD,
+                    "Fatte's Pizzaria", R.drawable.fattes),
+            new ItemInfo("Medium Pepperoni Fatte's Pizza", "Medium Pepperoni Pizza from Fatte's", 15000000, 3000000, CURRENCY_CODE_USD,
+                    "Fatte's Pizzaria", R.drawable.fattes),
+            /*new ItemInfo("Starbucks Mocha", "More features", 4000000, 3000000, CURRENCY_CODE_USD,
+                    "Starbucks Coffee Shoppe", R.drawable.starbucks)*/
     };
 }

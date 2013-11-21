@@ -18,6 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.samples.wallet.ItemListActivity;
 
 import android.content.Intent;
 import android.location.Address;
@@ -49,9 +50,9 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	private Button mButton;
 	private LocationClient mLocationClient;
 	private LatLng mCurrentCoordinates;
-	private LatLng mMarkerPos;
+	private static LatLng mMarkerPos;
 	private boolean mSent = false;
-	private Marker mMarker;
+	private Marker mMarker = null;
 
 	private static final LocationRequest REQUEST = LocationRequest.create()
 			.setInterval(5000) // 5 seconds
@@ -62,6 +63,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//setContentView(R.layout.activity_pay);
 		setUpMapIfNeeded();
 		// Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 		// "mailto","colemanhindes@gmail.com", null));
@@ -109,6 +111,24 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	public void nextScreen(View view)
 	{
 		Intent intent = new Intent(this, PayActivity.class);
+		startActivity(intent);
+	}
+	
+	public void showList(View view) {
+		setContentView(R.layout.glenactivity_launch);
+	}
+	
+	public void showCheckout(View view) {
+		setContentView(R.layout.glenactivity_checkout);
+	}
+	
+	public void showReceipt(View view) {
+		setContentView(R.layout.glenactivity_receipt);
+	}
+	
+	public void startPay(View view)
+	{
+		Intent intent = new Intent(this, ItemListActivity.class);
 		startActivity(intent);
 	}
 
@@ -247,5 +267,13 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	public void onMarkerDragStart(Marker arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	// Return location of delivery
+	public static LatLng getDeliveryLocation() {
+		if(mMarkerPos != null)
+			return mMarkerPos;
+		
+		return null;
 	}
 }

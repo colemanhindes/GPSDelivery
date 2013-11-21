@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Displays the credentials received in the {@code FullWallet}.
@@ -41,6 +42,10 @@ public class OrderCompleteActivity extends Activity implements OnClickListener {
         if (intent != null) {
             mFullWallet = intent.getParcelableExtra(Constants.EXTRA_FULL_WALLET);
         }
+        
+       /* String[] location = ItemListActivity.deliveryLoc.split(",");*/
+        TextView deliveryLocation = (TextView) findViewById(R.id.confirm_delivery_location);
+        deliveryLocation.setText("Location to deliver to: 35.2454989 N , 120.5969758 W");
 
         Button continueButton = (Button) findViewById(R.id.button_continue_shopping);
         continueButton.setOnClickListener(this);

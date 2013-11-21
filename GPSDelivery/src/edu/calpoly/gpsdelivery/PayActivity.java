@@ -1,5 +1,6 @@
 package edu.calpoly.gpsdelivery;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.samples.wallet.*;
 import edu.calpoly.gpsdatabase01.Launch;
 import android.os.Bundle;
@@ -26,7 +27,13 @@ public class PayActivity extends android.support.v4.app.FragmentActivity
 	}
 	public void startPay(View view)
 	{
+		LatLng location = MainActivity.getDeliveryLocation();
+		/*String strLocation = "";
+		if(location != null)
+			strLocation += location.latitude+","+location.longitude;*/
+		
 		Intent intent = new Intent(this, ItemListActivity.class);
+		//intent.putExtra("deliveryLoc", strLocation);
 		startActivity(intent);
 	}
 //	protected void onActivityResult (int requestCode, int resultCode, Intent data)

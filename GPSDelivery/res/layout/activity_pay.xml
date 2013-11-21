@@ -25,12 +25,12 @@
              android:text="@string/map" 
              android:layout_below="@id/paybutton"
              android:onClick="startMap"/>
-    <Button 
+    <!--  Button 
          	 android:layout_width="match_parent"
              android:layout_height="48dp"
              android:minWidth="200dp"
              android:text="@string/db" 
              android:layout_below="@id/mapbutton"
-             android:onClick="startDb"/>
+             android:onClick="showList"/> -->
 
 </RelativeLayout>

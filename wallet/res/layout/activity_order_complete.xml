@@ -52,6 +52,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/padding_xlarge"
             android:text="@string/confirmation_text" />
+        
+        <TextView
+            android:id="@+id/confirm_delivery_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_xlarge"
+            android:text="@string/confirmation_text" />
 
         <Button
             android:id="@+id/button_continue_shopping"

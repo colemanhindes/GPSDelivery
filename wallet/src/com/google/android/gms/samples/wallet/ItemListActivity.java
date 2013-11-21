@@ -16,6 +16,7 @@
 
 package com.google.android.gms.samples.wallet;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
@@ -45,6 +46,7 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
     private boolean mIsDualFrame = false;
     private ListView mItemList;
     private ItemDetailsFragment mDetailsFragment;
+    public static String deliveryLoc = "No Location Data";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,14 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
             mItemList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             mDetailsFragment.setItemId(0);
         }
+        
+        /*deliveryLoc = "No Location Data";
+        if(!getIntent().getStringExtra("deliveryLoc").equals(""))
+        	deliveryLoc = getIntent().getStringExtra("deliveryLoc");*/
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LoginActivity.REQUEST_USER_LOGIN) {
             if (resultCode == RESULT_OK) {
@@ -87,7 +94,8 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
         return true;
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
 		if (itemId == R.id.login) {

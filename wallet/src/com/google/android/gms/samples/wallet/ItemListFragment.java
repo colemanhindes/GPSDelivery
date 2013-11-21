@@ -45,11 +45,11 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         View root = inflater.inflate(R.layout.fragment_item_list, container);
 
         // Styling the header with HTML elements in TextView
-        TextView promoTitle = (TextView) root.findViewById(R.id.promo_title);
-        promoTitle.setText(Html.fromHtml(getString(R.string.promo)));
+        //TextView promoTitle = (TextView) root.findViewById(R.id.promo_title);
+        //promoTitle.setText(Html.fromHtml(getString(R.string.promo)));
 
-        View promo = root.findViewById(R.id.promotion);
-        promo.setOnClickListener(this);
+        //View promo = root.findViewById(R.id.promotion);
+        //promo.setOnClickListener(this);
 
         return root;
     }
