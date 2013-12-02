@@ -16,6 +16,11 @@
 
 package com.google.android.gms.samples.wallet;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.calpoly.gpsdatabase01.Item;
+import edu.calpoly.gpsdatabase01.ItemsDataSource;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +62,12 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        
+        // get all items from database
+        ItemsDataSource ids = new ItemsDataSource(getActivity());
+        ids.open();
+        List<Item> items = ids.getAllItems();
+        
         ArrayAdapter<ItemInfo> adapter = new ItemAdapter(getActivity(),
                 Constants.ITEMS_FOR_SALE);
         setListAdapter(adapter);

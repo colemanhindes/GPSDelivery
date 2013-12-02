@@ -3,9 +3,6 @@ package edu.calpoly.gpsdatabase01;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.samples.wallet.Constants;
-import com.google.android.gms.samples.wallet.ItemInfo;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -60,15 +57,15 @@ public class ItemsDataSource {
 				+ " = " + id, null);
 	}
 
-	public ArrayList<ItemInfo> getAllItems() {
-		ArrayList<ItemInfo> items = new ArrayList<ItemInfo>();
+	public List<Item> getAllItems() {
+		List<Item> items = new ArrayList<Item>();
 
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_ITEMS,
 				allColumns, null, null, null, null, null);
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			ItemInfo item = cursorToItemInfo(cursor);
+			Item item = cursorToItem(cursor);
 			items.add(item);
 			cursor.moveToNext();
 		}
@@ -76,21 +73,6 @@ public class ItemsDataSource {
 		cursor.close();
 		return items;
 	}
-
-	private ItemInfo cursorToItemInfo(Cursor cursor) {
-		ItemInfo item = new ItemInfo(cursor.getString(1), // Item name
-									 cursor.getString(2), // Item desc
-									 cursor.getLong(3),   // Item price
-									 cursor.getLong(4),   // Item tax
-									 Constants.CURRENCY_CODE_USD, // Country code
-									 cursor.getString(5), // Store name
-									 cursor.getInt(6));   // Item image
-		return item;
-	}
-	
-	/*public ItemInfo(String name, String description, long price, long shippingPrice,
-            String currencyCode, String sellerData, int imageResourceId) {
-      */
 
 	private Item cursorToItem(Cursor cursor) {
 		Item item = new Item();
