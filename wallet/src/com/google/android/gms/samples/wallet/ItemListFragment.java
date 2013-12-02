@@ -67,6 +67,7 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         ItemsDataSource ids = new ItemsDataSource(getActivity());
         ids.open();
         List<Item> items = ids.getAllItems();
+        // use items in place of Cosntants.ITEMS_FOR_SALE below .. hopefully
         
         ArrayAdapter<ItemInfo> adapter = new ItemAdapter(getActivity(),
                 Constants.ITEMS_FOR_SALE);
