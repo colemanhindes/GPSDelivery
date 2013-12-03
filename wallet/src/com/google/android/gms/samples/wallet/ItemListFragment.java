@@ -66,11 +66,11 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         // get all items from database
         ItemsDataSource ids = new ItemsDataSource(getActivity());
         ids.open();
-        List<Item> items = ids.getAllItems();
-        // use items in place of Cosntants.ITEMS_FOR_SALE below .. hopefully
-        
+        List<ItemInfo> items = ids.getAllItems();
+        // use items in place of Cosntants.ITEMS_FOR_SALE below        
         ArrayAdapter<ItemInfo> adapter = new ItemAdapter(getActivity(),
-                Constants.ITEMS_FOR_SALE);
+        		  items);
+        //        Constants.ITEMS_FOR_SALE);
         setListAdapter(adapter);
     }
 
@@ -78,6 +78,11 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
     public void onClick(View view) {
         Intent intent = new Intent(getActivity(), ItemDetailsActivity.class);
         intent.putExtra(Constants.EXTRA_ITEM_ID, XY000_POSITION);
+        startActivity(intent);
+    }
+    
+    public void viewCart(View view) {
+    	Intent intent = new Intent(getActivity(), ViewCart.class);
         startActivity(intent);
     }
 
@@ -90,7 +95,7 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         private LayoutInflater mInflater;
         private Context mContext;
 
-        public ItemAdapter(Context context, ItemInfo[] objects) {
+        public ItemAdapter(Context context, List<ItemInfo> objects) {
             super(context, R.layout.list_item, R.id.name, objects);
             mInflater = LayoutInflater.from(context);
             mContext = context;

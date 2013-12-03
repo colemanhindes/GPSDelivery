@@ -1,7 +1,6 @@
 package edu.calpoly.gpsdatabase01;
 
 import com.google.android.gms.samples.wallet.ItemInfo;
-import com.google.android.gms.samples.wallet.R;
 
 public class Item {
 	private long id;

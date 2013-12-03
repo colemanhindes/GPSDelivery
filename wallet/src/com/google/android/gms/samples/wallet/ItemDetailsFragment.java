@@ -16,6 +16,7 @@
 
 package com.google.android.gms.samples.wallet;
 
+import edu.calpoly.gpsdatabase01.ItemsDataSource;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -48,6 +49,19 @@ public class ItemDetailsFragment extends Fragment implements OnClickListener {
         setItemId(mItemId);
         return mRoot;
     }
+    
+    public void gotoCheckout(View v) {
+    	Intent intent = new Intent(getActivity(), CheckoutActivity.class);
+        intent.putExtra(Constants.EXTRA_ITEM_ID, mItemId);
+        startActivity(intent);
+    }
+    
+    // Use to return to itemlist
+    private void goToItemListActivity() {
+        Intent intent = new Intent(getActivity(), ItemListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     @Override
     public void onClick(View v) {
@@ -55,17 +69,14 @@ public class ItemDetailsFragment extends Fragment implements OnClickListener {
         intent.putExtra(Constants.EXTRA_ITEM_ID, mItemId);
         startActivity(intent);
     }
-
+    
     /**
-     * Updates the item details with the item in {@link Constants#ITEMS_FOR_SALE}
-     * at <code>position</code>
-     *
-     * @param position The index of the item in {@link Constants#ITEMS_FOR_SALE}
-     * @see Constants#ITEMS_FOR_SALE
+     * Updates the item details with the item in ItemsDataSource.items
      */
     public void setItemId(int position) {
         mItemId = position;
-        ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
+        //ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
+        ItemInfo itemInfo = ItemsDataSource.items.get(mItemId);
 
         TextView itemName = (TextView) mRoot.findViewById(R.id.text_details_item_name);
         itemName.setText(itemInfo.name);

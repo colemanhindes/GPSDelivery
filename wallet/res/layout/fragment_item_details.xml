@@ -58,7 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_to_cart"
-            android:layout_marginBottom="@dimen/padding_large" />
+            android:layout_marginBottom="@dimen/padding_large" 
+            android:onClick="gotoCheckout"/>     
+
 
     </LinearLayout>
 

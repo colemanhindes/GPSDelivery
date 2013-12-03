@@ -23,13 +23,13 @@ public class Launch extends ListActivity {
 		datasource = new ItemsDataSource(this);
 		datasource.open();
 
-		List<Item> values = datasource.getAllItems();
+		//List<Item> values = datasource.getAllItems();
 
 		// use the SimpleCursorAdapter to show the
 		// elements in a ListView
-		ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this,
+		/*ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this,
 				android.R.layout.simple_list_item_1, values);
-		setListAdapter(adapter);
+		setListAdapter(adapter);*/
 	}
 
 	// Will be called via the onClick attribute
