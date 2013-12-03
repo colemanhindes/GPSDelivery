@@ -48,6 +48,7 @@
         <activity
             android:name="OrderCompleteActivity"
             android:label="@string/title_order_complete" />
+
         <receiver
             android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"
             android:exported="false">

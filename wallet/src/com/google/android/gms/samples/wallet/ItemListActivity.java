@@ -121,6 +121,11 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
             startActivity(intent);
         }
     }
+    
+    public void viewCart(View view) {
+    	Intent intent = new Intent(this, ViewCart.class);
+        startActivity(intent);
+    }
 
     @TargetApi(11)
     @Override

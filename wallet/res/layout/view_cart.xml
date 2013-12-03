@@ -28,14 +28,14 @@
         android:id="@android:id/list"
         android:divider="@drawable/divider"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
-    <!-- <Button
+    <Button
             android:id="@+id/button_view_cart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/view_cart"
+            android:text="@string/title_checkout"
             android:layout_marginBottom="@dimen/padding_large" 
-            android:onClick=""/> -->
+            android:onClick="gotoCheckout"/>
 
 </LinearLayout>

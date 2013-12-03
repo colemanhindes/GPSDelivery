@@ -129,6 +129,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	public void startPay(View view)
 	{
 		Intent intent = new Intent(this, ItemListActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Added so multiple instances are not started of the same activity
 		startActivity(intent);
 	}
 

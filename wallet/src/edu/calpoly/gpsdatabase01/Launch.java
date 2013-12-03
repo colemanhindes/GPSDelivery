@@ -1,6 +1,6 @@
 package edu.calpoly.gpsdatabase01;
 
-import edu.calpoly.gpsdelivery.R;
+//import edu.calpoly.gpsdelivery.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -18,18 +18,18 @@ public class Launch extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.glenactivity_launch);
+		//setContentView(R.layout.glenactivity_launch);
 
 		datasource = new ItemsDataSource(this);
 		datasource.open();
 
-		List<Item> values = datasource.getAllItems();
+		//List<Item> values = datasource.getAllItems();
 
 		// use the SimpleCursorAdapter to show the
 		// elements in a ListView
-		ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this,
+		/*ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this,
 				android.R.layout.simple_list_item_1, values);
-		setListAdapter(adapter);
+		setListAdapter(adapter);*/
 	}
 
 	// Will be called via the onClick attribute
@@ -39,7 +39,7 @@ public class Launch extends ListActivity {
 		ArrayAdapter<Item> adapter = (ArrayAdapter<Item>) getListAdapter();
 		Item item = null;
 		switch (view.getId()) {
-		case R.id.add:
+		/*case R.id.add:
 			String[] items = new String[] { "Pizza", "Ice Cream", "Cookies" };
 			int nextInt = new Random().nextInt(3);
 			// save the new item to the database
@@ -61,7 +61,7 @@ public class Launch extends ListActivity {
 		case R.id.backToDB:
 			setContentView(R.layout.glenactivity_launch);
 			break;
-		}
+		*/}
 		adapter.notifyDataSetChanged();
 	}
 
