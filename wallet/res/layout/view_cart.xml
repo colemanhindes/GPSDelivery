@@ -36,6 +36,10 @@
             android:layout_height="wrap_content"
             android:text="@string/title_checkout"
             android:layout_marginBottom="@dimen/padding_large" 
-            android:onClick="gotoCheckout"/>
+            android:onClick="gotoCheckout"
+            android:textColor="@color/white"
+		    android:background="@drawable/button"
+		    android:fontFamily="sans-serif-light"
+			android:textStyle="bold"/>
 
 </LinearLayout>

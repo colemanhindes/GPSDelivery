@@ -253,7 +253,15 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		{
 			Address address = addresses.get(0);
 			if (address != null && address.getMaxAddressLineIndex() != -1)
-				Toast.makeText(this, address.getAddressLine(0), Toast.LENGTH_SHORT).show();
+			{
+				String toastText = "";
+				for (int i = 0; i < address.getMaxAddressLineIndex(); i++)
+				{	
+					toastText += address.getAddressLine(i) + '\n';
+				}
+				Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+			}
+				
 		}
 	}
 

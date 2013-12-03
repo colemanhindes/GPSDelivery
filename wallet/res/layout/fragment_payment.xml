@@ -100,7 +100,11 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/padding_large"
             android:layout_marginBottom="@dimen/padding_large"
-            android:text="@string/submit" />
+            android:text="@string/submit" 
+            android:textColor="@color/white"
+   			android:background="@drawable/button"
+    		android:fontFamily="sans-serif-light"
+			android:textStyle="bold"/>
 
     </LinearLayout>
 

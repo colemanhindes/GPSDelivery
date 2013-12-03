@@ -102,7 +102,11 @@
             android:text="@string/confirm_order"
             android:layout_width="@dimen/buy_button_width"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal" 
+            android:textColor="@color/white"
+    		android:background="@drawable/button"
+    		android:fontFamily="sans-serif-light"
+			android:textStyle="bold"/>
 
     </LinearLayout>
 
