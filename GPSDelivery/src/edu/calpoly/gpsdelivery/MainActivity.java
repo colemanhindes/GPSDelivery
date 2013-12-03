@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.samples.wallet.ItemListActivity;
 
+
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -110,7 +111,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	
 	public void nextScreen(View view)
 	{
-		Intent intent = new Intent(this, PayActivity.class);
+		Intent intent = new Intent(this, ItemListActivity.class);
 		startActivity(intent);
 	}
 	
@@ -189,7 +190,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		// map.
 		if (mMap == null) {
 			// Check if we were successful in obtaining the map.
-			mMap = ((SupportMapFragment) getSupportFragmentManager()
+			mMap = ((com.google.android.gms.maps.SupportMapFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
 
 			// Check if we were successful in obtaining the map.

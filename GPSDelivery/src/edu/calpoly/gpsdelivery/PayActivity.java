@@ -1,7 +1,8 @@
 package edu.calpoly.gpsdelivery;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.samples.wallet.*;
+import com.google.android.gms.samples.wallet.ItemListActivity;
+
 import edu.calpoly.gpsdatabase01.Launch;
 import android.os.Bundle;
 import android.content.Intent;
