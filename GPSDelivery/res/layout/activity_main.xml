@@ -21,18 +21,17 @@
 	android:orientation="vertical"    
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<fragment
-	    android:id="@+id/map"
-	    android:layout_width="match_parent"
-	    android:layout_height="480dp"
-	    class="com.google.android.gms.maps.SupportMapFragment"
-	    android:clickable="true" />
+	<fragment 
+    	android:id="@+id/map"
+    	class="com.google.android.gms.maps.SupportMapFragment"
+    	android:layout_width="wrap_content"
+    	android:layout_height="480dp" />
 
 	<LinearLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
 
-		<Button android:id="@+id/button"
+		<Button android:id="@+id/button" 
 	            android:layout_width="wrap_content"
 	            android:layout_height= "match_parent"
 	            android:text="@string/confirm"
@@ -50,10 +49,12 @@
 			<ImageView android:id="@+id/carIcon"
 			    android:layout_height="wrap_content"
 			    android:layout_width="wrap_content"
-			    android:contentDescription="estimation"
+			    android:contentDescription="@string/estimation"
 			    android:src="@drawable/ic_menu_car_green_estimation_64"
 			    />
-			<TextView 
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" 
 			    android:text="@string/estimation"
 			    android:textColor="@color/maingreen"
 			/>

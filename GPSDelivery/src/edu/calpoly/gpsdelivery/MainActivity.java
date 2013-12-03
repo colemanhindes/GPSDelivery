@@ -20,7 +20,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.samples.wallet.ItemListActivity;
 
-
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -51,7 +50,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	private Button mButton;
 	private LocationClient mLocationClient;
 	private LatLng mCurrentCoordinates;
-	private static LatLng mMarkerPos;
+	private LatLng mMarkerPos;
 	private boolean mSent = false;
 	private Marker mMarker = null;
 
@@ -112,6 +111,11 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	public void nextScreen(View view)
 	{
 		Intent intent = new Intent(this, ItemListActivity.class);
+		String strLocation = "";
+		if(mMarkerPos != null)
+			strLocation += mMarkerPos.latitude+","+mMarkerPos.longitude;
+		
+		intent.putExtra("deliveryLoc", strLocation);
 		startActivity(intent);
 	}
 	
@@ -127,12 +131,12 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		setContentView(R.layout.glenactivity_receipt);
 	}
 	
-	public void startPay(View view)
-	{
-		Intent intent = new Intent(this, ItemListActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Added so multiple instances are not started of the same activity
-		startActivity(intent);
-	}
+//	public void startPay(View view)
+//	{
+//		Intent intent = new Intent(this, ItemDetailsActivity.class);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Added so multiple instances are not started of the same activity
+//		startActivity(intent);
+//	}
 
 	@Override
 	protected void onResume() {
@@ -190,7 +194,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		// map.
 		if (mMap == null) {
 			// Check if we were successful in obtaining the map.
-			mMap = ((com.google.android.gms.maps.SupportMapFragment) getSupportFragmentManager()
+			mMap = ((SupportMapFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
 
 			// Check if we were successful in obtaining the map.
@@ -272,7 +276,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	}
 	
 	// Return location of delivery
-	public static LatLng getDeliveryLocation() {
+	public LatLng getDeliveryLocation() {
 		if(mMarkerPos != null)
 			return mMarkerPos;
 		

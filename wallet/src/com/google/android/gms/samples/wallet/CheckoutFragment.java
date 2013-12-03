@@ -84,6 +84,7 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
         mContinueCheckout = (Button) view.findViewById(R.id.button_regular_checkout);
         mBuyWithGoogleWallet = (ImageButton) view.findViewById(R.id.button_wallet);
         mReturnToShopping = (Button) view.findViewById(R.id.button_return_to_shopping);
+        mReturnToShopping.setBackground(getResources().getDrawable(R.drawable.button));
 
         ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
 

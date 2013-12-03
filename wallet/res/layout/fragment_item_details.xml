@@ -57,7 +57,9 @@
             android:id="@+id/button_details_button_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button"
             android:text="@string/add_to_cart"
+            android:textColor="@color/white"
             android:layout_marginBottom="@dimen/padding_large" 
             android:onClick="gotoCheckout"/>     
 

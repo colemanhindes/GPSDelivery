@@ -23,5 +23,6 @@
     <color name="promo_item_label_color">#BBBBBB</color>
     <color name="promo_item_label_background">#99444444</color>
     <color name="maingreen">#659A41</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>
