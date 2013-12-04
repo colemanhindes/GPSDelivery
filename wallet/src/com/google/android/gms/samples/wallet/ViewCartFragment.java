@@ -33,48 +33,41 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ItemListFragment extends ListFragment implements OnClickListener {
+public class ViewCartFragment extends ListFragment implements OnClickListener {
 
-    /**
-     * The index of the XY000 item in {@link Constants#ITEMS_FOR_SALE} sent
-     * to {@link ItemDetailsActivity} if the user clicks on the promo section.
-     */
-    private final int XY000_POSITION = 0;
+  
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_item_list, container);
-
-        // Styling the header with HTML elements in TextView
-        //TextView promoTitle = (TextView) root.findViewById(R.id.promo_title);
-        //promoTitle.setText(Html.fromHtml(getString(R.string.promo)));
-
-        //View promo = root.findViewById(R.id.promotion);
-        //promo.setOnClickListener(this);
+        View root = inflater.inflate(R.layout.view_cart, container);
 
         return root;
     }
-
-    @Override
+	
+	
+	@Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         
-        // get all items from database
-        ItemsDataSource ids = new ItemsDataSource(getActivity());
-        ids.open();
-        List<ItemInfo> items = ids.getAllItems();
+        List<ItemInfo> items = new ArrayList<ItemInfo>();
+        
+        for(int i = 0; i < ItemListActivity.itemCart.size(); i++){
+        	items.add(ItemsDataSource.items.get(ItemListActivity.itemCart.get(i)));
+        }
+        
         
         // use items in place of Cosntants.ITEMS_FOR_SALE below        
         ArrayAdapter<ItemInfo> adapter = new ItemAdapter(getActivity(),
         		  items);
-        //        Constants.ITEMS_FOR_SALE);
-        setListAdapter(adapter);
+        if(adapter != null)
+        	setListAdapter(adapter);
     }
 
     @Override
@@ -85,17 +78,13 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
     		Log.d("GLEN", "VIEWCART PRESSED");
     		Intent intent = new Intent(null, ViewCartActivity.class);
             startActivity(intent);
+    	}else if(id == R.id.remove_item) {
+    		
     	}else{
-	        Intent intent = new Intent(getActivity(), ItemDetailsActivity.class);
-	        intent.putExtra(Constants.EXTRA_ITEM_ID, XY000_POSITION);
-	        startActivity(intent);
+	        
     	}
     }
-    
-    public void gotoViewCart(View view) {
-    	Intent intent = new Intent(getActivity(), ViewCartActivity.class);
-        startActivity(intent);
-    }
+
 
     @Override
     public void onListItemClick(ListView list, View v, int position, long id) {
@@ -107,7 +96,7 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         private Context mContext;
 
         public ItemAdapter(Context context, List<ItemInfo> objects) {
-            super(context, R.layout.list_item, R.id.name, objects);
+            super(context, R.layout.cart_item, R.id.name, objects);
             mInflater = LayoutInflater.from(context);
             mContext = context;
         }
@@ -115,13 +104,17 @@ public class ItemListFragment extends ListFragment implements OnClickListener {
         @Override
         public View getView(int position, View view, ViewGroup parent) {
             if (view == null) {
-                view = mInflater.inflate(R.layout.list_item, parent, false);
+                view = mInflater.inflate(R.layout.cart_item, parent, false);
             }
 
             ItemInfo info = getItem(position);
             TextView title = (TextView) view.findViewById(R.id.name);
             TextView price = (TextView) view.findViewById(R.id.price);
             ImageView image = (ImageView) view.findViewById(R.id.image);
+            
+            // Set button id to determine which one to remove when clicked
+            Button btn = (Button) view.findViewById(R.id.remove_item);
+            btn.setTag(position);
 
             title.setText(info.name);
             price.setText(Util.formatPrice(mContext, info.priceMicros));

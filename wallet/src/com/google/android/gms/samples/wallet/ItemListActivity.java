@@ -16,12 +16,17 @@
 
 package com.google.android.gms.samples.wallet;
 
+import java.util.ArrayList;
+
+import edu.calpoly.gpsdatabase01.ItemsDataSource;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -47,7 +52,20 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
     private ListView mItemList;
     private ItemDetailsFragment mDetailsFragment;
     public static String deliveryLoc = "No Location Data";
+    
+    // Cart to hold the items the user has selected
+    public static ArrayList<Integer> itemCart = new ArrayList<Integer>();
 
+    // @Param position is the position within ItemsDataSource.items 's list
+    public static void addToCart(int position) {
+    	itemCart.add(position);
+    }
+    
+    // @Param position is the position within ItemsDataSource.items 's list
+    public static void removeFromCart(int position) {
+    	itemCart.remove(position);
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +78,7 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
         if (mIsDualFrame) {
             mItemList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             mDetailsFragment.setItemId(0);
-        }
+        }        
         
         /*deliveryLoc = "No Location Data";
         if(!getIntent().getStringExtra("deliveryLoc").equals(""))
@@ -122,8 +140,8 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
         }
     }
     
-    public void viewCart(View view) {
-    	Intent intent = new Intent(this, ViewCart.class);
+    public void gotoViewCart(View view) {
+    	Intent intent = new Intent(view.getContext(), ViewCartActivity.class);
         startActivity(intent);
     }
 

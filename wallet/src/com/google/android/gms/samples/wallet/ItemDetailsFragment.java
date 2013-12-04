@@ -20,6 +20,8 @@ import edu.calpoly.gpsdatabase01.ItemsDataSource;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -65,9 +67,21 @@ public class ItemDetailsFragment extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), CheckoutActivity.class);
-        intent.putExtra(Constants.EXTRA_ITEM_ID, mItemId);
-        startActivity(intent);
+
+    	int id = v.getId();
+    	if(id == R.id.button_details_button_add){
+    		// Add to cart then return to list
+    		Intent intent = new Intent(getActivity(), ItemListActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+    		ItemListActivity.addToCart(mItemId);
+
+    	}else if(true){
+    		// Add to cart
+    		Intent intent = new Intent(getActivity(), CheckoutActivity.class);
+            intent.putExtra(Constants.EXTRA_ITEM_ID, mItemId);
+            startActivity(intent);
+    	}
     }
     
     /**

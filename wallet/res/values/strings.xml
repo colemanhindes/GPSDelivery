@@ -19,12 +19,14 @@
 
     <string name="app_name">Google Wallet SDK Sample</string>
     <string name="store_name">Fatte\'s Pizzaria</string>
+    <string name="remove_item">remove</string>
     <string name="title_details">Details</string>
     <string name="title_checkout">Checkout</string>
     <string name="title_confirmation">Order Confirmation</string>
     <string name="title_login">Login</string>
     <string name="title_payment">Payment Options</string>
     <string name="title_order_complete">Select Items</string>
+    <string name="title_view_cart">View Cart</string>
     <string name="menu_settings">Settings</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="continue_checkout">Continue checkout</string>
