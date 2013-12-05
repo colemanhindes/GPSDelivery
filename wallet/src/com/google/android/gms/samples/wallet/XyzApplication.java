@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 public class XyzApplication extends Application {
     private static final String USER_PREFS = "com.google.android.gms.samples.wallet.USER_PREFS";
     private static final String KEY_USERNAME = "com.google.android.gms.samples.wallet.KEY_USERNAME";
+    private String locationString;
 
     private String mUserName;
     private SharedPreferences mPrefs;
@@ -49,5 +50,12 @@ public class XyzApplication extends Application {
 
     public String getAccountName() {
         return mPrefs.getString(KEY_USERNAME, null);
+    }
+    
+    public void setLocation(String locationString) {
+        this.locationString = locationString;
+    }
+    public String getLocation() {
+        return locationString;
     }
 }

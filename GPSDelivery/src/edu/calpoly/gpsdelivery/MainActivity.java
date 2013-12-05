@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.samples.wallet.ItemListActivity;
+import com.google.android.gms.samples.wallet.XyzApplication;
 
 import android.content.Intent;
 import android.location.Address;
@@ -65,31 +66,9 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//setContentView(R.layout.activity_pay);
-		this.mStrAddress = "";
-		
-		// For glen's emulation
-		//Intent intent = new Intent(this, ItemListActivity.class);
-		//startActivity(intent);
-		
-		//setUpMapIfNeeded();
-		// Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-		// "mailto","colemanhindes@gmail.com", null));
-		// emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
-		// emailIntent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
-		// startActivity(Intent.createChooser(emailIntent, "Send email..."));
-
-		// mButton = (Button) findViewById(R.id.button);
-		// if (mButton != null)
-		// {
-		// mButton.setOnClickListener(new View.OnClickListener() {
-		// public void onClick(View v) {
-		// // Perform action on click
-		// }
-		// });
-		// }
-		// else
-		// Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
+		setUpMapIfNeeded();
+		setUpLocationClientIfNeeded();
+		mLocationClient.connect();
 	}
 	
 
@@ -120,9 +99,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	public void nextScreen(View view)
 	{
 		Intent intent = new Intent(this, ItemListActivity.class);
-		String strLocation = "";
-		if(this.mStrAddress != "")
-			intent.putExtra("deliveryAddress", mStrAddress);
 		startActivity(intent);
 	}
 
@@ -224,6 +200,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 					mCurrentCoordinates, 18));
 			mMarker.setTitle("Long click to drag");
 			mMarker.showInfoWindow();
+			onMarkerDragEnd(this.mMarker);
 		}
 		
 
@@ -248,10 +225,14 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			{
 				String toastText = address.getAddressLine(0);
 				Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
-				this.mStrAddress = toastText;
+				this.mStrAddress = "";
+				for (int i = 0; i < address.getMaxAddressLineIndex(); i++)
+					this.mStrAddress += address.getAddressLine(i) + "\n";
 			}
+			
 				
 		}
+		((XyzApplication)getApplication()).setLocation(this.mStrAddress);
 	}
 
 	@Override

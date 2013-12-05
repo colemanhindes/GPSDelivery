@@ -34,7 +34,7 @@
     <string name="view_cart">View cart</string>
     <string name="not_implemented">Not implemented</string>
     <string name="loading">Loading&#8230;</string>
-    <string name="estimated_shipping">Estimated shipping:</string>
+    <string name="estimated_shipping">Shipping:</string>
     <string name="shipping">Shipping:</string>
     <string name="tax">Tax:</string>
     <string name="total">Total:</string>
@@ -79,10 +79,15 @@
     <string name="saved_card_info">Issuer-1234</string>
     <string name="no_google_account">The device does not a Google account associated with it. Please add one and try again.</string>
     <string name="promo_label">Camera XY000</string>
-    <string name="promo"><![CDATA[
+    <string name="promo">
+<![CDATA[
         <font color="#3C72C4"><b>Free shipping</b></font>
         <font color="#919397">with every Camera XY000</font>
         <b>Today only!</b>
-    ]]></string>
+    ]]>
+    </string>
+    <string name="title_activity_location">Location</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

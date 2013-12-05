@@ -45,7 +45,7 @@ public class OrderCompleteActivity extends Activity implements OnClickListener {
         
        /* String[] location = ItemListActivity.deliveryLoc.split(",");*/
         TextView deliveryLocation = (TextView) findViewById(R.id.confirm_delivery_location);
-        deliveryLocation.setText("Location to deliver to: 35.2454989 N , 120.5969758 W");
+        deliveryLocation.setText(((XyzApplication)getApplication()).getLocation());
 
         Button continueButton = (Button) findViewById(R.id.button_continue_shopping);
         continueButton.setOnClickListener(this);
