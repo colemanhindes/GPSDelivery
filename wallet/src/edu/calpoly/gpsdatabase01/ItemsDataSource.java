@@ -100,7 +100,17 @@ public class ItemsDataSource {
 	public void addItems() {
 		// Insert a fake item for now
 		String sql = "insert into items (item, item_desc, item_price, item_tax, store_name, item_image) " +
-						"values ('Large Pizza from Fattes','large pizza from fattes',20000000,3000000,'Fattes Pizzaria'," + R.drawable.fattes +");";
+						"values ('Large Pizza','A large pepperoni pizza',20000000,3000000,'A pizzaria'," + R.drawable.pizza +");";
+		
+		database.execSQL(sql);
+	 
+		sql = "insert into items (item, item_desc, item_price, item_tax, store_name, item_image) " +
+						"values ('Hot Dog','A plain hot dog',2500000,3000000,'A hot dog stand'," + R.drawable.hotdog +");";
+
+		database.execSQL(sql);
+		
+		sql = "insert into items (item, item_desc, item_price, item_tax, store_name, item_image) " +
+						"values ('Turkey Sandwich','A turkey sandwich',4000000,3000000,'A deli'," + R.drawable.turkey +");";
 				
 		database.execSQL(sql);
 	}

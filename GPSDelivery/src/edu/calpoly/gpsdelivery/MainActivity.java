@@ -54,6 +54,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	private LatLng mMarkerPos;
 	private boolean mSent = false;
 	private Marker mMarker = null;
+	private String mStrAddress;
 
 	private static final LocationRequest REQUEST = LocationRequest.create()
 			.setInterval(5000) // 5 seconds
@@ -65,7 +66,13 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		//setContentView(R.layout.activity_pay);
-		setUpMapIfNeeded();
+		this.mStrAddress = "";
+		
+		// For glen's emulation
+		//Intent intent = new Intent(this, ItemListActivity.class);
+		//startActivity(intent);
+		
+		//setUpMapIfNeeded();
 		// Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
 		// "mailto","colemanhindes@gmail.com", null));
 		// emailIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT");
@@ -114,10 +121,8 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	{
 		Intent intent = new Intent(this, ItemListActivity.class);
 		String strLocation = "";
-		if(mMarkerPos != null)
-			strLocation += mMarkerPos.latitude+","+mMarkerPos.longitude;
-		
-		intent.putExtra("deliveryLoc", strLocation);
+		if(this.mStrAddress != "")
+			intent.putExtra("deliveryAddress", mStrAddress);
 		startActivity(intent);
 	}
 
@@ -243,6 +248,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			{
 				String toastText = address.getAddressLine(0);
 				Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+				this.mStrAddress = toastText;
 			}
 				
 		}

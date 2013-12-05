@@ -76,6 +76,10 @@
         <activity
             android:name="com.google.android.gms.samples.wallet.ItemListActivity"
             android:label="@string/title_order_complete" />
+        
+        <activity
+            android:name="com.google.android.gms.samples.wallet.ViewCartActivity"
+            android:label="@string/title_view_cart" />
 
         <receiver
             android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"

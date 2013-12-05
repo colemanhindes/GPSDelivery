@@ -48,6 +48,10 @@
         <activity
             android:name="OrderCompleteActivity"
             android:label="@string/title_order_complete" />
+        
+        <activity
+            android:name="ViewCartActivity"
+            android:label="@string/title_view_cart" />
 
         <receiver
             android:name="com.google.android.gms.wallet.EnableWalletOptimizationReceiver"

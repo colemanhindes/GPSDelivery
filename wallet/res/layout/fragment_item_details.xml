@@ -62,8 +62,8 @@
             android:textColor="@color/white"
        		android:fontFamily="sans-serif-light"
 			android:textStyle="bold"
-            android:layout_marginBottom="@dimen/padding_large" 
-            android:onClick="gotoCheckout"/>     
+            android:layout_marginBottom="@dimen/padding_large" /> 
+            <!-- android:onClick="gotoCheckout"/>-->     
 
 
     </LinearLayout>
