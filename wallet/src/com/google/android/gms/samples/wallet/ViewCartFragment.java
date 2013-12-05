@@ -78,8 +78,6 @@ public class ViewCartFragment extends ListFragment implements OnClickListener {
     		Log.d("GLEN", "VIEWCART PRESSED");
     		Intent intent = new Intent(null, ViewCartActivity.class);
             startActivity(intent);
-    	}else if(id == R.id.remove_item) {
-    		
     	}else{
 	        
     	}
@@ -113,8 +111,8 @@ public class ViewCartFragment extends ListFragment implements OnClickListener {
             ImageView image = (ImageView) view.findViewById(R.id.image);
             
             // Set button id to determine which one to remove when clicked
-            Button btn = (Button) view.findViewById(R.id.remove_item);
-            btn.setTag(position);
+           // Button btn = (Button) view.findViewById(R.id.remove_item);
+            //btn.setTag(position);
 
             title.setText(info.name);
             price.setText(Util.formatPrice(mContext, info.priceMicros));

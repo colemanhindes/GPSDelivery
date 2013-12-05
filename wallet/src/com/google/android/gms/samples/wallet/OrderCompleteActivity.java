@@ -40,7 +40,7 @@ public class OrderCompleteActivity extends Activity implements OnClickListener {
 
         Intent intent = getIntent();
         if (intent != null) {
-            mFullWallet = intent.getParcelableExtra(Constants.EXTRA_FULL_WALLET);
+           // mFullWallet = intent.getParcelableExtra(Constants.EXTRA_FULL_WALLET);
         }
         
        /* String[] location = ItemListActivity.deliveryLoc.split(",");*/
@@ -56,6 +56,8 @@ public class OrderCompleteActivity extends Activity implements OnClickListener {
         Intent intent = new Intent(OrderCompleteActivity.this, ItemListActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ItemListActivity.itemCart.clear(); // clear for new cart
+
         OrderCompleteActivity.this.startActivity(intent);
     }
 }

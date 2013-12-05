@@ -21,12 +21,76 @@
     android:fillViewport="true" >
 
     <LinearLayout
+        android:id="@+id/checkout_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <include layout="@layout/cart_item_details" />
+       <!--  <include layout="@layout/cart_item_details" /> -->
 
+        <TableLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="@dimen/padding_large"
+		    android:layout_marginRight="@dimen/padding_large" >
+            <TableRow>
+
+        <TextView
+            android:id="@+id/text_shipping"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right" />
+
+        <TextView
+            android:id="@+id/text_shipping_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/padding_large" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/tax" />
+
+        <TextView
+            android:id="@+id/text_tax_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/padding_large" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/total"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:textStyle="bold" />
+
+    </TableRow>
+            
+        </TableLayout>
+        
         <include layout="@layout/horizontal_divider" />
 
         <Button

@@ -66,6 +66,22 @@ public class ItemListActivity extends FragmentActivity implements OnItemClickLis
     	itemCart.remove(position);
     }
     
+    public static long getTax() {
+    	long tax = 0;
+    	for(int i = 0; i < ItemListActivity.itemCart.size(); i++){
+    		tax += ItemsDataSource.items.get(ItemListActivity.itemCart.get(i)).taxMicros;
+    	}
+    	return tax;
+    }
+    
+    public static long getTotalPrice() {
+    	long price = 0;
+    	for(int i = 0; i < ItemListActivity.itemCart.size(); i++){
+    		price += ItemsDataSource.items.get(ItemListActivity.itemCart.get(i)).priceMicros;
+    	}
+    	return price;
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

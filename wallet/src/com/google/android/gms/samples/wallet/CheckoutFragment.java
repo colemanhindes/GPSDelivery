@@ -21,6 +21,9 @@ import com.google.android.gms.wallet.MaskedWalletRequest;
 import com.google.android.gms.wallet.WalletClient;
 import com.google.android.gms.wallet.WalletConstants;
 
+import edu.calpoly.gpsdatabase01.ItemsDataSource;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -31,6 +34,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,42 +77,60 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
         setHasOptionsMenu(true);
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         initializeProgressDialog();
 
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
-
         mContinueCheckout = (Button) view.findViewById(R.id.button_regular_checkout);
         mBuyWithGoogleWallet = (ImageButton) view.findViewById(R.id.button_wallet);
         mReturnToShopping = (Button) view.findViewById(R.id.button_return_to_shopping);
         mReturnToShopping.setBackground(getResources().getDrawable(R.drawable.button));
 
-        ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
+        LinearLayout checkout_layout = (LinearLayout) view.findViewById(R.id.checkout_items);
+        ItemInfo cur;
+        View item_layout;
+        
+        for(int i = 0; i < ItemListActivity.itemCart.size(); i++){
+        	cur = ItemsDataSource.items.get(ItemListActivity.itemCart.get(i));
+        	item_layout =  inflater.inflate(R.layout.cart_item_details, container, false);
+        	
+            TextView itemName = (TextView) item_layout.findViewById(R.id.text_item_name);
+            itemName.setText(cur.name);
 
-        TextView itemName = (TextView) view.findViewById(R.id.text_item_name);
-        itemName.setText(itemInfo.name);
+            Drawable itemImage = getResources().getDrawable(cur.imageResourceId);
+            int imageSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+            itemImage.setBounds(0, 0, imageSize, imageSize);
+            itemName.setCompoundDrawables(itemImage, null, null, null);
 
-        Drawable itemImage = getResources().getDrawable(itemInfo.imageResourceId);
-        int imageSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
-        itemImage.setBounds(0, 0, imageSize, imageSize);
-        itemName.setCompoundDrawables(itemImage, null, null, null);
+            TextView itemPrice = (TextView) item_layout.findViewById(R.id.text_item_price);
+            itemPrice.setText(Util.formatPrice(getActivity(), cur.priceMicros));
+            
+            checkout_layout.addView(item_layout, 0);
+            
+        }
+        
+        
+        //ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
 
-        TextView itemPrice = (TextView) view.findViewById(R.id.text_item_price);
-        itemPrice.setText(Util.formatPrice(getActivity(), itemInfo.priceMicros));
+
 
         // display estimated shipping and tax because the shipping address is unknown
         TextView shippingLabel = (TextView) view.findViewById(R.id.text_shipping);
         shippingLabel.setText(R.string.estimated_shipping);
         TextView estimatedShipping =
                 (TextView) view.findViewById(R.id.text_shipping_price);
-        estimatedShipping.setText(Util.formatPrice(getActivity(), itemInfo.shippingPriceMicros));
+        long shipping = 3000000;
+        estimatedShipping.setText(Util.formatPrice(getActivity(), shipping));
+        
         TextView tax = (TextView) view.findViewById(R.id.text_tax_price);
-        tax.setText(Util.formatPrice(getActivity(), itemInfo.taxMicros));
+        tax.setText(Util.formatPrice(getActivity(), ItemListActivity.getTax()));
+        
         TextView total = (TextView) view.findViewById(R.id.text_total_price);
-        total.setText(Util.formatPrice(getActivity(), itemInfo.getTotalPrice()));
+        total.setText(Util.formatPrice(getActivity(), (ItemListActivity.getTotalPrice() + ItemListActivity.getTax() + shipping)));
 
         mContinueCheckout.setOnClickListener(this);
         mBuyWithGoogleWallet.setOnClickListener(this);
@@ -183,7 +205,8 @@ public class CheckoutFragment extends XyzWalletFragment implements OnClickListen
         }
     }
 
-    @Override
+    @SuppressLint("NewApi")
+	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CODE_RESOLVE_ERR:

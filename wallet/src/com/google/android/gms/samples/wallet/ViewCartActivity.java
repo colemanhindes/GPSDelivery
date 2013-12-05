@@ -94,13 +94,13 @@ public class ViewCartActivity extends FragmentActivity implements OnItemClickLis
     	// Need to edit checkoutactivity.class to not expect anything in the extra
     	// instead pull cart from ItemListActivity.userCart
     	
-    	//Intent intent = new Intent(this, CheckoutActivity.class);
-        //startActivity(intent);
+    	Intent intent = new Intent(this, CheckoutActivity.class);
+        startActivity(intent);
     }
     
     // Onclick for remove button
     public void removeItem(View view) {
-    	Log.d("glen", "remove pressed; id: " + view.getTag()); // Displays the correct position
+    	Log.d("gpsdelivery", "remove pressed; id: " + view.getTag()); // Displays the correct position
     	//String str = (String) view.getTag();
     	//TextView tv = (TextView) view.getTag();
     	

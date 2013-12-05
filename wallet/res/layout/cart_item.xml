@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-	    <Button
+	   <!-- <Button
 	        android:id="@+id/remove_item"
 	        android:layout_width="wrap_content"
 	        android:layout_height="20dp"
@@ -53,7 +53,7 @@
 	        android:text="@string/remove_item"
 	        android:onClick="removeItem"
 	        android:tag="null"
-	        />
+	        /> -->
     </LinearLayout>
 
     

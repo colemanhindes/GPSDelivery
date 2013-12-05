@@ -37,6 +37,10 @@
             android:text="@string/view_cart"
             android:layout_marginBottom="@dimen/padding_large" 
             android:onClick="gotoViewCart"
+            android:textColor="@color/white"
+		    android:background="@drawable/button"
+		    android:fontFamily="sans-serif-light"
+			android:textStyle="bold"
             />
 
 </LinearLayout>

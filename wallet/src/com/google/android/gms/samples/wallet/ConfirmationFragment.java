@@ -90,7 +90,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
 
         View view = inflater.inflate(R.layout.fragment_confirmation, container, false);
 
-        mItemInfo = Constants.ITEMS_FOR_SALE[mItemId];
+       /* mItemInfo = Constants.ITEMS_FOR_SALE[mItemId];
 
         TextView itemName = (TextView) view.findViewById(R.id.text_item_name);
         itemName.setText(mItemInfo.name);
@@ -101,7 +101,7 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         itemName.setCompoundDrawables(itemImage, null, null, null);
 
         TextView itemPrice = (TextView) view.findViewById(R.id.text_item_price);
-        itemPrice.setText(Util.formatPrice(getActivity(), mItemInfo.priceMicros));
+        itemPrice.setText(Util.formatPrice(getActivity(), mItemInfo.priceMicros));*/
 
         TextView shippingLabel = (TextView) view.findViewById(R.id.text_shipping);
         shippingLabel.setText(R.string.shipping);
@@ -145,7 +145,10 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         } else if (v == mChangeAddressButton) {
             changeMaskedWallet();
         } else if (v == mConfirmButton) {
-            confirmPurchase();
+            //confirmPurchase();
+        	// send message here, if wanted
+        	Intent intent = new Intent(getActivity(), OrderCompleteActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -185,12 +188,14 @@ public class ConfirmationFragment extends XyzWalletFragment implements OnClickLi
         // email may change if the user changes to a different Wallet account
         mEmail.setText(mMaskedWallet.getEmail());
 
-        ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
+       // ItemInfo itemInfo = Constants.ITEMS_FOR_SALE[mItemId];
         // calculating exact shipping and tax should now be possible because there is a shipping
         // address in mMaskedWallet
-        mShipping.setText(Util.formatPrice(getActivity(), itemInfo.shippingPriceMicros));
-        mTax.setText(Util.formatPrice(getActivity(), itemInfo.taxMicros));
-        mTotal.setText(Util.formatPrice(getActivity(), itemInfo.getTotalPrice()));
+        
+        long shipping = 3000000;
+        mShipping.setText(Util.formatPrice(getActivity(), shipping));
+        mTax.setText(Util.formatPrice(getActivity(), ItemListActivity.getTax()));
+        mTotal.setText(Util.formatPrice(getActivity(), (ItemListActivity.getTotalPrice() + ItemListActivity.getTax() + shipping)));
 
         // display the payment descriptions of all of the payment instruments being used
         mPaymentDescriptions.setText(Util.formatPaymentDescriptions(mMaskedWallet));
