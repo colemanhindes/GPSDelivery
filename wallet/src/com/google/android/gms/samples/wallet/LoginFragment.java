@@ -51,7 +51,7 @@ public class LoginFragment extends Fragment implements
 
         mPlusClient = new PlusClient.Builder(getActivity(), this, this)
                 .setScopes(Scopes.PLUS_LOGIN,
-                        "https://www.googleapis.com/auth/paymentssandbox.make_payments")
+                        "https://www.googleapis.com/auth/payments.make_payments")
                 .build();
 
         setRetainInstance(true);
@@ -67,7 +67,6 @@ public class LoginFragment extends Fragment implements
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setOnClickListener(this);
 
-        view.findViewById(R.id.button_login_xyz).setOnClickListener(this);
         return view;
     }
 
@@ -113,10 +112,7 @@ public class LoginFragment extends Fragment implements
 			    mPlusClient.connect();
 			    mProgressDialog.show();
 			}
-		} else if (id == R.id.button_login_xyz) {
-			Toast.makeText(getActivity(), R.string.login_xyz_message, Toast.LENGTH_LONG)
-			        .show();
-		}
+		} 
     }
 
     @Override

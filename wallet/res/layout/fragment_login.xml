@@ -14,7 +14,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -29,32 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/element_space"/>
 
-    <View
-        android:background="@android:color/black"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="@dimen/element_space" />
-
-    <EditText
-        android:id="@+id/entry_login_xyz"
-        android:hint="@string/login_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/element_space" />
-
-    <EditText
-        android:id="@+id/entry_login_guest"
-        android:hint="@string/login_password"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/element_space" />
-
-    <Button
-        android:id="@+id/button_login_xyz"
-        android:text="@string/login_xyz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
 

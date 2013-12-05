@@ -13,6 +13,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -41,7 +42,7 @@ import android.widget.Toast;
  */
 public class MainActivity extends android.support.v4.app.FragmentActivity implements
 		ConnectionCallbacks, OnConnectionFailedListener, LocationListener,
-		OnMarkerDragListener {
+		OnMarkerDragListener, OnMarkerClickListener {
 	/**
 	 * Note that this may be null if the Google Play services APK is not
 	 * available.
@@ -83,6 +84,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		// else
 		// Toast.makeText(this, "null", Toast.LENGTH_SHORT).show();
 	}
+	
 
 	private void setUpLocationClientIfNeeded() {
 		if (mLocationClient == null) {
@@ -118,25 +120,6 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 		intent.putExtra("deliveryLoc", strLocation);
 		startActivity(intent);
 	}
-	
-	public void showList(View view) {
-		setContentView(R.layout.glenactivity_launch);
-	}
-	
-	public void showCheckout(View view) {
-		setContentView(R.layout.glenactivity_checkout);
-	}
-	
-	public void showReceipt(View view) {
-		setContentView(R.layout.glenactivity_receipt);
-	}
-	
-//	public void startPay(View view)
-//	{
-//		Intent intent = new Intent(this, ItemDetailsActivity.class);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT); // Added so multiple instances are not started of the same activity
-//		startActivity(intent);
-//	}
 
 	@Override
 	protected void onResume() {
@@ -201,6 +184,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			if (mMap != null) {
 				mMap.setMyLocationEnabled(true);
 				mMap.setOnMarkerDragListener(this);
+				mMap.setOnMarkerClickListener(this);
 				showMyLocation(this.findViewById(R.id.map));
 			}
 		}
@@ -228,11 +212,13 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			//smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 			mSent = true;
 			mMarker = mMap.addMarker(new MarkerOptions()
-					.position(mCurrentCoordinates).title("Delivery spot")
+					.position(mCurrentCoordinates)
 					.draggable(true));
 			
 			mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
 					mCurrentCoordinates, 18));
+			mMarker.setTitle("Long click to drag");
+			mMarker.showInfoWindow();
 		}
 		
 
@@ -241,6 +227,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 	@Override
 	public void onMarkerDragEnd(Marker marker) {
 		mMarkerPos = marker.getPosition();
+		this.mMarker.hideInfoWindow();
 		List<Address> addresses = new ArrayList<Address>();
 		Geocoder geocoder = new Geocoder(this, Locale.US);
 		try {
@@ -254,11 +241,7 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			Address address = addresses.get(0);
 			if (address != null && address.getMaxAddressLineIndex() != -1)
 			{
-				String toastText = "";
-				for (int i = 0; i < address.getMaxAddressLineIndex(); i++)
-				{	
-					toastText += address.getAddressLine(i) + '\n';
-				}
+				String toastText = address.getAddressLine(0);
 				Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 			}
 				
@@ -289,5 +272,11 @@ public class MainActivity extends android.support.v4.app.FragmentActivity implem
 			return mMarkerPos;
 		
 		return null;
+	}
+
+	@Override
+	public boolean onMarkerClick(Marker marker) {
+		this.mMarker.hideInfoWindow();
+		return false;
 	}
 }
